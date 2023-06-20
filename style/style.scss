@@ -1,0 +1,490 @@
+$text: #081800;
+$basic: #418A1C;
+$accent: #51C815;
+$bgc: #F7FFEC;
+
+body {
+  font-family: 'Raleway', sans-serif;
+  font-size: 18px;
+  line-height: 160%;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  height: 100%;
+  object-fit: contain;
+}
+
+@mixin section {
+  padding-block: 65px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+@mixin link {
+  color: $text;
+  opacity: .5;
+  text-decoration: none;
+  transition: opacity .4s ease, color .4s ease;
+}
+
+@mixin link--active {
+  color: $basic;
+  opacity: 1;
+}
+
+@mixin button {
+  position: relative;
+  outline: none;
+  border: none;
+  font-size: 1rem;
+  padding: 20px 30px;
+  cursor: pointer;
+  background-color: $text;
+  color: #fff;
+  font-weight: 700;
+  transition: background-color .4s ease;
+  &::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -10;
+    top: 10px;
+    left: 10px;
+    background-color: $accent;
+  }
+}
+
+@mixin button--active {
+  background-color: $basic;
+}
+
+@mixin svg-link {
+  border-radius: 50%;
+  background-color: $text;
+  padding: 8px 12px;
+  & path {
+    transition: all .4s ease;
+  }
+}
+
+@mixin svg-link--active {
+  & path {
+    fill: $accent;
+  }
+}
+
+@mixin title {
+  font-family: inherit;
+  font-weight: 800;
+  font-size: 3rem;
+}
+
+.container {
+  margin: 0 auto;
+  padding-inline: 260px;
+}
+
+.section {
+  padding-block: 1rem;
+}
+
+.btn {
+  @include button;
+  &:hover,
+  &:focus-visible {
+    @include button--active;
+  }
+}
+
+.header {
+  position: relative;
+  z-index: 500;
+  padding-block: 40px;
+  &__nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__logo {
+    width: 70px;
+    height: 60px;
+  }
+  &__menu {
+    display: flex;
+    align-items: center;
+    gap: 80px;
+  }
+  &__list {
+    display: flex;
+    gap: 45px;
+    height: 100%;
+    align-items: center;
+  }
+  &__link {
+    @include link;
+    font-weight: 700;
+    &:hover,
+    &:focus-visible {
+      @include link--active;
+    }
+  }
+}
+
+.main {
+  padding-block: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 98px;
+}
+
+.hero {
+  &__picture {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    background-color: $bgc;
+    padding: 0 1rem 3rem 4rem;
+  }
+  &__title {
+    @include title;
+    color: $basic;
+    font-size: 80px;
+    margin-left: 19vw;
+    margin-top: 0;
+    line-height: 130%;
+    & span {
+      color: $text;
+      font-size: 60px;
+      display: block;
+      max-width: 70%;
+      line-height: 130%;
+    }
+  }
+  &__content {
+    margin-left: 28vw;
+  }
+  &__text {
+    margin-bottom: 45px;
+    font-weight: 700;
+    opacity: 0.7;
+  }
+  &__btn {
+    margin-bottom: 80px;
+  }
+  &__stat {
+    margin-bottom: 2rem;
+    display: flex;
+    gap: 100px;
+  }
+  &__wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  &__value {
+    @include title;
+    font-size: 2.5rem;
+    color: $basic;
+  }
+  &__descr {
+    font-weight: 600;
+    opacity: 0.6;
+  }
+}
+
+.about {
+  display: flex;
+  flex-direction: column;
+  gap: 130px;
+  &__title {
+    @include title;
+    line-height: 140%;
+    font-size: 60px;
+  }
+  &__picture {
+    background-color: $bgc;
+    padding: 30px 60px;
+    max-height: 380px;
+    & img {
+      width: 100%;
+    }
+  }
+  &__text {
+    font-weight: 700;
+    line-height: 160%;
+    opacity: 0.6;
+  }
+  &__wrapper {
+    display: grid;
+    gap: 20px 60px;
+  }
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 70%;
+  }
+  &__item {
+    padding-left: 4rem;
+    position: relative;
+    &::before {
+      content: '';
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      width: 40px;
+      height: 40px;
+      background-color: $basic;
+      background-image: url(../img/svg/list.svg);
+      background-repeat: no-repeat;
+      background-position:  center center;
+    }
+  }
+  &__video {
+    position: relative;
+  }
+  &__play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: #fff;
+    width: 70px;
+    height: 70px;
+    transform: translateX(-50%) translateY(-50%);
+    &::before {
+      content: '';
+      position: absolute;
+      background-color: #fff;
+      opacity: 0.5;
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      top: -20%;
+      left: -20%;
+    }
+    &::after {
+      content: '';
+      position: absolute;
+      background: rgba(255, 255, 255, 0.5);
+      opacity: 0.5;
+      width: 126px;
+      height: 126px;
+      border-radius: 50%;
+      top: -40%;
+      left: -40%;
+    }
+    & svg {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-40%) translateY(-45%);
+    }
+    & path {
+      transition: all .4s ease;
+    }
+    &:hover path,
+    &:focus-visible path {
+      fill: $text;
+    }
+  }
+  &-top {
+    grid-template-columns: 55% 40%;
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-areas:
+            "top-title top-pic_1"
+            "top-pic_2 top-pic_1"
+            "top-pic_2 top-cont";
+    &__title {
+      grid-area: top-title;
+      max-width: 70%;
+    }
+    &__picture--1 {
+      grid-area: top-pic_1;
+    }
+    &__picture--2 {
+      grid-area: top-pic_2;
+    }
+    &__content {
+      grid-area: top-cont;
+      display: flex;
+      padding-block: 12px;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: start;
+    }
+  }
+  &-list {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    gap: 60px;
+    grid-template-areas:
+            "list-pic_1 list-title"
+            "list-pic_1 list-title"
+            "list-pic_1 list-pic_2"
+            "list-list list-pic_2"
+            "list-list list-pic_2"
+            "list-list list-pic_2";
+    &__picture--1 {
+      grid-area: list-pic_1;
+    }
+    &__picture--2 {
+      grid-area: list-pic_2;
+    }
+    &__title {
+      grid-area: list-title;
+    }
+    &__list {
+      grid-area: list-list;
+    }
+  }
+  &-video {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    grid-template-areas:
+            "vid-title vid-pic_1"
+            "vid-pic_2 vid-pic_1"
+            "vid-pic_2 vid-pic_1"
+            "vid-pic_2 vid-text";
+    &__title {
+      grid-area: vid-title;
+    }
+    &__picture--1 {
+      grid-area: vid-pic_1;
+      height: 300%;
+    }
+    &__picture--2 {
+      grid-area: vid-pic_2;
+      height: 300%;
+    }
+    &__text {
+      grid-area: vid-text;
+    }
+  }
+}
+
+.order {
+  &__wrapper {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 40px;
+  }
+  &__right,
+  &__left {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    flex-basis: 50%;
+    justify-content: space-between;
+    align-items: start;
+  }
+  &__bottom {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 80px;
+  }
+  &__title {
+    @include title;
+    padding-top: 1rem;
+    font-size: 3.5rem;
+    line-height: 140%;
+    max-width: 80%;
+  }
+  &__text {
+    flex-basis: 50%;
+  }
+  &__btn {
+    display: inline;
+  }
+  &-article {
+    display: flex;
+    padding: 30px 40px;
+    background-color: $bgc;
+    gap: 42px;
+    align-items: center;
+    &__img {
+      max-width: 35%;
+    }
+    &__content {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    &__title {
+      @include title;
+      font-size: 32px;
+      line-height: 160%;
+    }
+    &__price {
+      font-weight: 700;
+      font-size: 24px;
+      line-height: 160%;
+      color: #418A1C;
+    }
+  }
+}
+
+.footer {
+  position: relative;
+  padding-top: 110px;
+  padding-bottom: 100px;
+  background-color: $bgc;
+  background-image: url(../img/footer.png);
+  background-position: 100% 100%;
+  background-repeat: no-repeat;
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    gap: 118px;
+  }
+  &__wrapper {
+    display: flex;
+    gap: 130px;
+  }
+  &__wrap {
+    margin-right: 100px;
+  }
+  &__title {
+    font-weight: 700;
+    line-height: 160%;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+  }
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  &__link {
+    @include link;
+    text-transform: uppercase;
+    &:hover,
+    &:focus-visible {
+      @include link--active;
+    }
+  }
+}
+
+.social {
+  &__link {
+    @include svg-link;
+    &:hover,
+    &:focus-visible {
+      @include svg-link--active;
+    }
+  }
+  &__list {
+    display: flex;
+    gap: 12px;
+  }
+}
